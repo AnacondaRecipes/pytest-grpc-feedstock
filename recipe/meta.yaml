@@ -1,6 +1,6 @@
 {% set name = "pytest-grpc" %}
 {% set version = "0.8.0" %}
-
+{% set sha256 = "0bd2683ffd34199444d707c0ab01970b22e0afbba6cb1ddb6d578c85ebfe09bd" %}
 
 package:
   name: {{ name|lower }}
@@ -8,20 +8,21 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest-grpc-{{ version }}.tar.gz
-  sha256: 0bd2683ffd34199444d707c0ab01970b22e0afbba6cb1ddb6d578c85ebfe09bd
+  sha256: {{ sha256 }}
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: python -m pip install . -vv --no-deps
 
 requirements:
   host:
+    - python
     - pip
-    - python >=3.6.0
+    - setuptools
+    - wheel
   run:
+    - python
     - pytest >=3.6.0
-    - python >=3.6.0
 
 test:
   commands:
@@ -32,11 +33,17 @@ test:
     - pip
 
 about:
-  home: https://pypi.org/project/pytest-grpc/
-  summary: pytest plugin for grpc
+  home: https://github.com/kataev/pytest-grpc
+  summary: Write test for gRPC with pytest
+  description: Write test for gRPC with pytest
   license: MIT
+  license_family: MIT
   license_file: LICENSE
+  doc_url: https://github.com/kataev/pytest-grpc/blob/master/README.md
+  doc_source_url: https://github.com/kataev/pytest-grpc
+  dev_url: https://github.com/kataev/pytest-grpc
 
 extra:
   recipe-maintainers:
+    - mcg1969
     - k-dominik
