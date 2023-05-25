@@ -28,10 +28,11 @@ test:
   imports:
     - pytest_grpc
   commands:
-    - pytest --traceconfig | grep pytest_grpc-{{ version }}
+    - pytest --traceconfig | grep grpc-{{ version }}
     - pip check
   requires:
     - pip
+    - grpcio
 
 about:
   home: https://github.com/kataev/pytest-grpc
