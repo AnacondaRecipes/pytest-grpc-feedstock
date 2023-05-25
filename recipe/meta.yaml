@@ -12,7 +12,7 @@ source:
 
 build:
   number: 1
-  script: python -m pip install . -vv --no-deps
+  script: python -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -25,6 +25,8 @@ requirements:
     - pytest >=3.6.0
 
 test:
+  imports:
+    - pytest_grpc
   commands:
     - pytest --traceconfig | grep pytest_grpc-{{ version }}
     - pip check
@@ -39,7 +41,6 @@ about:
   license_family: MIT
   license_file: LICENSE
   doc_url: https://github.com/kataev/pytest-grpc/blob/master/README.md
-  doc_source_url: https://github.com/kataev/pytest-grpc
   dev_url: https://github.com/kataev/pytest-grpc
 
 extra:
